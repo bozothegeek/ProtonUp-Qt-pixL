@@ -29,6 +29,10 @@ https://aur.archlinux.org/packages/protonup-qt (Maintained by yochananmarqos)
 https://aur.archlinux.org/packages/protonup-qt-bin (Maintained by R1yuu)
 
 ## Run from source
+### use virtual env to execute source code (recommended)
+### to execute each time before to launch GUI
+`python3 -m venv venv`
+`source venv/bin/activate`
 ### Install dependencies
 `pip3 install -r ./requirements.txt`
 ### Run ProtonUp-Qt
