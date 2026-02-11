@@ -27,6 +27,8 @@ class PupguiCustomInstallDirectoryDialog(QObject):
             'heroicproton': 'Heroic (Proton)',
             'bottles': 'Bottles',
             'winezgui': 'WineZGUI',
+            'pixlwine': 'pixL Wine',
+            'pixlproton': 'pixL Proton',
         }
 
         self.load_ui()

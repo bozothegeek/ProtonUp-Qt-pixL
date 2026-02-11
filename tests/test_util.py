@@ -175,6 +175,11 @@ def test_get_dict_key_from_value(test_dict: dict[str | int | Launcher, str | str
             Launcher.WINEZGUI,
             id='WineZGUI Launcher'
         ),
+        pytest.param(
+            [ install_location['install_dir'] for install_location in POSSIBLE_INSTALL_LOCATIONS if install_location['launcher'] in ('pixlwine', 'pixlproton') ],
+            Launcher.PIXL,
+            id='pixL Launcher'
+        ),
     ]
 )
 def test_get_launcher_from_installdir(launcher_paths: list[str], expected_launcher: Launcher) -> None:

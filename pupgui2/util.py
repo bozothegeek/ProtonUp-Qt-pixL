@@ -944,6 +944,8 @@ def get_launcher_from_installdir(install_dir: str) -> Launcher:
         return Launcher.BOTTLES
     elif 'winezgui/runners' in install_dir.lower():
         return Launcher.WINEZGUI
+    elif 'pixl/runners' in install_dir.lower():
+        return Launcher.PIXL
     else:
         return Launcher.UNKNOWN
 

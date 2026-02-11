@@ -3,7 +3,7 @@
   <id>net.davidotek.pupgui2</id>
   
   <name>ProtonUp-Qt</name>
-  <summary>Install Wine- and Proton-based compatibility tools</summary>
+  <summary>Install Wine and Proton-based compatibility tools</summary>
   <summary xml:lang="de_DE">Wine und Proton Kompatibilitätstools installieren</summary>
   <summary xml:lang="it_IT">Installa tool di compatibilità basati su Wine e Proton</summary>
   <summary xml:lang="nl_NL">Installeer op Wine en Proton gebaseerde compatibiliteitshulpmiddelen</summary>
@@ -21,7 +21,7 @@
   
   <description>
     <p>
-      Install and manage Wine- and Proton-based compatibility tools for Steam and Lutris with this graphical user interface.
+      Install and manage Wine and Proton-based compatibility tools for pixL OS with this graphical user interface.
     </p>
     <p>Supported launchers:</p>
     <ul>
@@ -30,6 +30,7 @@
       <li>Heroic Games Launcher</li>
       <li>Bottles</li>
       <li>WineZGUI</li>
+      <li>pixL OS</li>
       <li>Both normal, Snap and Flatpak installations are supported</li>
     </ul>
     <p>Supported compatibility tools:</p>
@@ -69,6 +70,15 @@
   <content_rating type="oars-1.0" />
 
   <releases>
+    <release version="2.15.1-pixl" date="2026-07-21">
+      <description>
+        <p>Changes/Improvements:</p>
+        <ul>
+          <li>Added support for the pixL OS</li>
+        </ul>
+        <p>Various improvements and bug fixes. See GitHub for more details. Thanks to all contributers!</p>
+      </description>
+    </release>
     <release version="2.15.1" date="2026-06-24">
       <description>
         <p>Changes/Improvements:</p>

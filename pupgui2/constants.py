@@ -8,7 +8,7 @@ from PySide6.QtGui import QColor, QPalette
 APP_NAME = 'ProtonUp-Qt'
 APP_VERSION = '2.15.1'
 APP_ID = 'net.davidotek.pupgui2'
-APP_THEMES = ( 'light', 'dark', 'system', 'steam', None )
+APP_THEMES = ( 'light', 'dark', 'system', 'steam', 'pixl', None )
 APP_ICON_FILE = os.path.join(xdg_config_home, 'pupgui/appicon256.png')
 APP_GHAPI_URL = 'https://api.github.com/repos/Davidotek/ProtonUp-qt/releases'
 DAVIDOTEK_KOFI_URL = 'https://ko-fi.com/davidotek'
@@ -63,6 +63,8 @@ POSSIBLE_INSTALL_LOCATIONS = [
 
 # Possible install locations for all other launchers, ensuring Steam paths are at the top of the list
 POSSIBLE_INSTALL_LOCATIONS += [
+    {'install_dir': '/usr/wine/', 'display_name': 'pixL Wine', 'launcher': 'pixlwine', 'type': 'native', 'icon': 'pixl'},
+    {'install_dir': '/usr/proton/', 'display_name': 'pixL Proton', 'launcher': 'pixlproton', 'type': 'native', 'icon': 'pixl'},
     {'install_dir': '~/.var/app/com.valvesoftware.Steam/data/Steam/compatibilitytools.d/', 'display_name': 'Steam Flatpak', 'launcher': 'steam', 'type': 'flatpak', 'icon': 'steam', 'vdf_dir': '~/.var/app/com.valvesoftware.Steam/.local/share/Steam/config'},
     {'install_dir': '~/snap/steam/common/.steam/root/compatibilitytools.d/', 'display_name': 'Steam Snap', 'launcher': 'steam', 'type': 'snap', 'icon': 'steam', 'vdf_dir': '~/snap/steam/common/.steam/root/config'},
     {'install_dir': '~/.local/share/lutris/runners/wine/', 'display_name': 'Lutris', 'launcher': 'lutris', 'type': 'native', 'icon': 'net.lutris.Lutris', 'config_dir': '~/.config/lutris'},

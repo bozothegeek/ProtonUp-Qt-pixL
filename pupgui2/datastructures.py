@@ -263,6 +263,7 @@ class Launcher(Enum):
     BOTTLES = 3
     HEROIC = 4
     WINEZGUI = 5
+    PIXL = 6
 
 
 class HardwarePlatform(Enum):

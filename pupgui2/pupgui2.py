@@ -148,7 +148,12 @@ class MainWindow(QObject):
         self.ui.btnSteamFlatpakCtools.clicked.connect(self.btn_steam_flatpak_ctools_clicked)
 
         self.ui.btnRemoveSelected.setEnabled(False)
+        
         self.ui.btnShowCtInfo.setEnabled(False)
+        # Launcher specific (pixL) to simplify interface for this OS
+        install_loc = get_install_location_from_directory_name(install_directory())
+        if install_loc.get('launcher') == 'steam' and 'vdf_dir' in install_loc:
+            self.ui.btnShowCtInfo.setVisible(False)
 
         # Keyboard Shortcuts
         QShortcut(QKeySequence.Quit, self.ui).activated.connect(self.btn_close_clicked)

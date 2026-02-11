@@ -13,7 +13,7 @@ from pupgui2.resources.ctmods.ctmod_00protonge import CtInstaller as GEProtonIns
 
 
 CT_NAME = 'Kron4ek Wine-Builds Vanilla'
-CT_LAUNCHERS = ['lutris', 'winezgui']
+CT_LAUNCHERS = ['lutris', 'winezgui', 'pixlwine']
 CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_kron4ekvanilla', '''Compatibility tool "Wine" to run Windows games on Linux. Official version from the WineHQ sources, compiled by Kron4ek.''')}
 
 
