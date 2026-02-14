@@ -17,6 +17,7 @@ from configparser import ConfigParser
 from typing import Any, Callable
 
 import PySide6
+from PySide6.QtGui import QFont, QColor, QPalette
 from PySide6.QtCore import QCoreApplication
 from PySide6.QtWidgets import QApplication, QComboBox, QStyleFactory, QMessageBox, QCheckBox
 
@@ -107,6 +108,111 @@ def apply_dark_theme(app: QApplication) -> None:
         app.setPalette(PALETTE_STEAMUI())
         stylesheet = pkgutil.get_data(__name__, 'resources/themes/steamdeck.qss')
         app.setStyleSheet(stylesheet.decode('utf-8'))
+    elif theme == 'pixl':
+        #app.setStyle('Fusion')
+        #pegasus "original" color for testing (extracted from QML)
+        #    background = "#404040"
+        #    _secondary = "#535353"
+        #    _textTitle = "#bfe6eb"
+        #    _textLabel = "#b7e3e8"
+        #    _textSublabel = "#B0E0E6"
+        #    accent = "#32CD32"
+        # Create a font object
+        #font = QFont("Segoe UI", 20) # Name of font, size in points
+        #font = QFont("DejaVu Sans", 20) # Name of font, size in points
+        #font = QFont("Courier", 20) # Name of font, size in points
+        font = QFont("Roboto", 20) # Name of font, size in points
+        # Optional: font.setBold(True)
+        # Apply it to the whole app
+        app.setFont(font)
+        # Change the color of all Text to Red (as an example)
+        #palette = QStyleFactory.create('fusion').standardPalette()
+        #palette.setColor(QPalette.WindowText, QColor("green"))
+        # Using a hex string (Note the '#' prefix)
+        #palette.setColor(QPalette.WindowText, QColor("#bfe6eb"))
+        #palette.setColor(QPalette.ButtonText, QColor("#b7e3e8"))
+
+        app.setStyleSheet("""
+            QWidget {
+                background-color: #404040; /*background*/
+                color: #32CD32; /*accent*/
+                font-family: 'Roboto';
+            }
+            QListWidget {
+                background-color: #535353; /*_secondary background*/
+                color: #bfe6eb; /*_textTitle*/           
+                border: 1px solid #535353; /*_secondary background*/
+            }
+            QListWidget:focus {
+                border: 1px solid #32CD32; /*accent*/
+            }
+            /* This targets the selection box */
+            QListWidget::item:selected, QListWidget::item:focus {
+                background-color: #32CD32; /*accent*/
+                color: #bfe6eb; /*_textTitle*/           
+            }
+            QListWidget::item:hover {
+                background-color: #535353; /*_secondary background*/
+                color: #32CD32; /*accent*/
+            }
+            QPushButton {
+                background-color: #535353; /*_secondary background*/
+                color: #b7e3e8; /*_textLabel*/
+                border: 1px solid #32CD32; /*accent*/
+                border-radius: 5px;
+                padding: 5px;
+                min-width: 80px;
+            }
+            QPushButton:hover, QPushButton:focus {
+                background-color: #32CD32; /*accent*/
+                border: 1px solid #32CD32; /*accent*/
+            }
+            QLineEdit, QComboBox, QListWidget {
+                background-color: #535353; /*_secondary background*/
+                border: 1px solid #32CD32; /*accent*/
+            }
+            /* 1. The main box when it's closed */
+            QComboBox {
+                background-color: #535353; /*_secondary background*/
+                color: #bfe6eb; /*_textTitle*/
+                border: 1px solid #535353; /*_secondary background*/
+                border-radius: 4px;
+                padding: 5px;
+            }
+            /* 2. The box when you Tab onto it with the keyboard */
+            QComboBox:focus {
+                border: 2px solid #32CD32; /*accent*/
+            }
+            /* Target the items specifically for Hover and Selection */
+            QComboBox QAbstractItemView::item {
+                background-color: transparent;
+                color: #bfe6eb; /*_textTitle*/ /* Color of the text in the list */
+                padding: 5px;
+            }
+            /* When the mouse is OVER an item */
+            QComboBox QAbstractItemView::item:hover {
+                background-color: #32CD32; /*accent*/ /* Darker grey to show presence */
+                color: #bfe6eb; /*_textTitle*/
+            }
+            /* When an item is SELECTED (clicked or keyboard-navigated) */
+            QComboBox QAbstractItemView::item:selected {
+                background-color: #32CD32; /*accent*/ /* High-contrast green */
+                color: #bfe6eb; /*_textTitle*/ /* Color of the text in the list */
+            }
+        """)
+        # app.setStyleSheet("""
+        # QWidget {
+        #     color: "#bfe6eb";
+        # }
+        # QPushButton {
+        #     color: "#bfe6eb";
+        #     border: 1px solid #333;
+        # }
+        # """)
+        #and
+        #palette.setColor(QPalette.ButtonText, QColor(0, 255, 0)) # RGB for Green
+        #app.setPalette(palette)
+
     else:
         is_plasma = 'plasma' in os.environ.get('DESKTOP_SESSION', '')
         darkmode_enabled = False

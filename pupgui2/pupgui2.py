@@ -154,8 +154,8 @@ class MainWindow(QObject):
         install_loc = get_install_location_from_directory_name(install_directory())
         if install_loc.get('launcher') in ('pixlwine', 'pixlproton'):
             self.ui.btnShowCtInfo.setVisible(False)
-            self.ui.btnAbout.setVisible(False)
-            self.ui.lblInstallDirectory.setVisible(False)            
+            #self.ui.btnAbout.setVisible(False)
+            #self.ui.lblInstallDirectory.setVisible(False)            
             #self.ui.lblActiveDownloads.setVisible(False)
             self.ui.comboInstallLocation.setVisible(False)
             self.ui.btnManageInstallLocations.setVisible(False)
