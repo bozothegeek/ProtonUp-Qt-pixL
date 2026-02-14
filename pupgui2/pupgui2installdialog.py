@@ -8,7 +8,7 @@ from PySide6.QtWidgets import QDialog
 from PySide6.QtUiTools import QUiLoader
 
 from pupgui2.util import open_webbrowser_thread, config_advanced_mode, get_combobox_index_by_value
-
+from pupgui2.util import install_directory, available_install_directories, get_install_location_from_directory_name
 
 RELEASES_PER_PAGE = 50  # Number of releases to fetch per page
 
@@ -61,6 +61,11 @@ class PupguiInstallDialog(QDialog):
 
         self.ui.comboCompatTool.addItems([ctobj['name'] for ctobj in self.ct_objs])
 
+        # Launcher specific (pixL) to simplify interface for this OS / hide buttons/lists
+        install_loc = get_install_location_from_directory_name(install_directory())
+        if install_loc.get('launcher') in ('pixlwine', 'pixlproton'):
+            self.ui.btnInfo.setVisible(False)
+        
     def btn_info_clicked(self):
         for ctobj in self.ct_objs:
             if ctobj['name'] == self.ui.comboCompatTool.currentText():

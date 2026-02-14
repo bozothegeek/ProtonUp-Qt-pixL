@@ -150,10 +150,15 @@ class MainWindow(QObject):
         self.ui.btnRemoveSelected.setEnabled(False)
         
         self.ui.btnShowCtInfo.setEnabled(False)
-        # Launcher specific (pixL) to simplify interface for this OS
+        # Launcher specific (pixL) to simplify interface for this OS / hide buttons/lists
         install_loc = get_install_location_from_directory_name(install_directory())
-        if install_loc.get('launcher') == 'steam' and 'vdf_dir' in install_loc:
+        if install_loc.get('launcher') in ('pixlwine', 'pixlproton'):
             self.ui.btnShowCtInfo.setVisible(False)
+            self.ui.btnAbout.setVisible(False)
+            self.ui.lblInstallDirectory.setVisible(False)            
+            #self.ui.lblActiveDownloads.setVisible(False)
+            self.ui.comboInstallLocation.setVisible(False)
+            self.ui.btnManageInstallLocations.setVisible(False)
 
         # Keyboard Shortcuts
         QShortcut(QKeySequence.Quit, self.ui).activated.connect(self.btn_close_clicked)
