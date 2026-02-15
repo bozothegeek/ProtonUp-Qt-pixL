@@ -4,7 +4,8 @@ script:
   - mkdir -p AppDir/usr/local/lib/python3.10/dist-packages
   - cp pupgui2 AppDir/usr/local/lib/python3.10/dist-packages -r
   - cp share AppDir/usr -r
-  - python3 -m pip install --ignore-installed --prefix=/usr --no-cache-dir --root=AppDir -r ./requirements.txt
+  - python3.10 -m pip install --upgrade pip setuptools wheel
+  - python3.10 -m pip install --ignore-installed --prefix=/usr --no-cache-dir --root=AppDir -r ./requirements.txt
   - rm -rf AppDir/usr/local/lib/python3.10/dist-packages/PySide6/Qt/qml/
   - rm -f AppDir/usr/local/lib/python3.10/dist-packages/PySide6/{assistant,designer,linguist,lrelease,lupdate}
   - rm -f AppDir/usr/local/lib/python3.10/dist-packages/PySide6/{Qt3D*,QtBluetooth*,QtCharts*,QtConcurrent*,QtDataVisualization*,QtDesigner*,QtHelp*,QtMultimedia*,QtNetwork*,QtOpenGL*,QtPositioning*,QtPrintSupport*,QtQml*,QtQuick*,QtRemoteObjects*,QtScxml*,QtSensors*,QtSerialPort*,QtSql*,QtStateMachine*,QtSvg*,QtTest*,QtWeb*,QtXml*}
@@ -30,7 +31,9 @@ AppDir:
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920d1991bc93c'
 
     include:
-      - python3
+      - python3.10
+      - python3.10-minimal
+      - libpython3.10-stdlib
       - python3-pkg-resources
       - libopengl0
       - libk5crypto3
@@ -43,7 +46,8 @@ AppDir:
     env:
       PYTHONHOME: '${APPDIR}/usr'
       PYTHONPATH: '${APPDIR}/usr/local/lib/python3.10/dist-packages'
-
+      #PYTHONPATH: '${APPDIR}/usr/local/lib/python3.10/dist-packages:${APPDIR}/usr/lib/python3/dist-packages'
+      #QT_PLUGIN_PATH: '${APPDIR}/usr/local/lib/python3.10/dist-packages/PySide6/Qt/plugins'
 
 AppImage:
   update-information: gh-releases-zsync|DavidoTek|ProtonUp-Qt|latest|ProtonUp-Qt-*x86_64.AppImage.zsync

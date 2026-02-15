@@ -40,7 +40,11 @@ https://aur.archlinux.org/packages/protonup-qt-bin (Maintained by R1yuu)
 
 ## Build AppImage
 ### Install dependencies
-`sudo apt install libfuse2`
+`sudo apt install libfuse2` #to run appimage
+`sudo add-apt-repository ppa:deadsnakes/ppa` #to install python 3.10 in appimage built
+`sudo apt update`
+`sudo apt install python3.10 python3.10-venv python3.10-distutils`
+`sudo apt install python3.10-dev python3.10-distutils build-essential`
 ### Build AppImage (using local repo appimage-builder appimage ;-)
 `./appimage-builder`
 
