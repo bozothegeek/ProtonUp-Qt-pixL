@@ -40,9 +40,9 @@ https://aur.archlinux.org/packages/protonup-qt-bin (Maintained by R1yuu)
 
 ## Build AppImage
 ### Install dependencies
-1. Install appimage-builder: https://appimage-builder.readthedocs.io/en/latest/intro/install.html  
-### Build AppImage
-`appimage-builder`
+`sudo apt install libfuse2`
+### Build AppImage (using local repo appimage-builder appimage ;-)
+`./appimage-builder`
 
 ## Translate ProtonUp-Qt
 **Recommended: You can translate ProtonUp-Qt on Weblate: https://hosted.weblate.org/projects/protonup-qt/**
