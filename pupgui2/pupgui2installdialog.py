@@ -36,6 +36,16 @@ class PupguiInstallDialog(QDialog):
         data = pkgutil.get_data(__name__, 'resources/ui/pupgui2_installdialog.ui')
         ui_file = QDataStream(QByteArray(data))
         self.ui = QUiLoader().load(ui_file.device())
+    
+        # --- Add these lines to force Full Screen ---
+        # 1. Ensure it behaves like a standalone window
+        self.ui.setWindowFlags(Qt.WindowType.Window) 
+        
+        # 2. Trigger Full Screen (hides taskbar/title bar)
+        self.ui.showFullScreen() 
+        
+        # Optional: If you want it maximized but with a title bar/taskbar instead:
+        # self.ui.showMaximized()
 
     def load_assets(self):
         p = QPixmap()

@@ -124,6 +124,16 @@ class MainWindow(QObject):
         loader = QUiLoader()
         self.ui = loader.load(ui_file.device())
 
+        # --- Add these lines to force Full Screen ---
+        # 1. Ensure it behaves like a standalone window
+        self.ui.setWindowFlags(Qt.WindowType.Window) 
+        
+        # 2. Trigger Full Screen (hides taskbar/title bar)
+        self.ui.showFullScreen() 
+        
+        # Optional: If you want it maximized but with a title bar/taskbar instead:
+        # self.ui.showMaximized()
+
     def setup_ui(self):
         """ setup ui - connect signals etc """
         self.progressBarDownload = QProgressBar()
@@ -154,10 +164,10 @@ class MainWindow(QObject):
         install_loc = get_install_location_from_directory_name(install_directory())
         if install_loc.get('launcher') in ('pixlwine', 'pixlproton'):
             self.ui.btnShowCtInfo.setVisible(False)
-            #self.ui.btnAbout.setVisible(False)
+            self.ui.btnAbout.setVisible(False)
             #self.ui.lblInstallDirectory.setVisible(False)            
             #self.ui.lblActiveDownloads.setVisible(False)
-            self.ui.comboInstallLocation.setVisible(False)
+            #self.ui.comboInstallLocation.setVisible(False)
             self.ui.btnManageInstallLocations.setVisible(False)
 
         # Keyboard Shortcuts
