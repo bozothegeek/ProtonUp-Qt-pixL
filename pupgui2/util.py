@@ -616,20 +616,33 @@ def get_installed_ctools(install_dir: str) -> list[BasicCompatTool]:
     ctools = []
 
     if os.path.exists(install_dir):
-        folders = os.listdir(install_dir)
-        folders = sort_compatibility_tool_names(folders)
-        for folder in folders:
-            if not os.path.isdir(os.path.join(install_dir, folder)):
+        items = os.listdir(install_dir)
+        items = sort_compatibility_tool_names(items)
+        
+        for item in items:
+            item_path = os.path.join(install_dir, item)
+            is_appimage = item.lower().endswith('.appimage')
+            
+            # Check if it's a directory OR an AppImage file
+            if not (os.path.isdir(item_path) or is_appimage):
                 continue
             
-            ct = BasicCompatTool(folder, install_dir, folder, ct_type=CTType.CUSTOM)
+            # Strip extension for the display name if it's an AppImage
+            # e.g., "Proton-Custom.AppImage" becomes "Proton-Custom"
+            display_name = (os.path.splitext(item)[0] + " (AppImage)") if is_appimage else item
+            
+            # Initialize the compatibility tool
+            # Using display_name for the label, but keeping 'item' for the actual file path/folder
+            ct = BasicCompatTool(display_name, install_dir, item, ct_type=CTType.CUSTOM)
 
-            ver_file = os.path.join(install_dir, folder, 'VERSION.txt')
-            if os.path.exists(ver_file):
-                with open(ver_file, 'r') as f:
-                    ver = f.read().strip()
-                    ct.set_version(ver)
-
+            # Look for VERSION.txt (usually only applies to folders)
+            if os.path.isdir(item_path):
+                ver_file = os.path.join(item_path, 'VERSION.txt')
+                if os.path.exists(ver_file):
+                    with open(ver_file, 'r') as f:
+                        ver = f.read().strip()
+                        ct.set_version(ver)
+            
             ctools.append(ct)
 
     return ctools
