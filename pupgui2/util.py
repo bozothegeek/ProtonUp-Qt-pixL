@@ -137,23 +137,32 @@ def apply_dark_theme(app: QApplication) -> None:
                 background-color: #404040; /*background*/
                 color: #32CD32; /*accent*/
                 font-family: 'Roboto';
+                font-size: 20pt;
             }
             QListWidget {
                 background-color: #535353; /*_secondary background*/
                 color: #bfe6eb; /*_textTitle*/           
                 border: 1px solid #535353; /*_secondary background*/
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
             QListWidget:focus {
                 border: 1px solid #32CD32; /*accent*/
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
             /* This targets the selection box */
             QListWidget::item:selected, QListWidget::item:focus {
                 background-color: #32CD32; /*accent*/
                 color: #bfe6eb; /*_textTitle*/           
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
             QListWidget::item:hover {
                 background-color: #535353; /*_secondary background*/
                 color: #32CD32; /*accent*/
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
             QPushButton {
                 background-color: #535353; /*_secondary background*/
@@ -162,14 +171,20 @@ def apply_dark_theme(app: QApplication) -> None:
                 border-radius: 5px;
                 padding: 5px;
                 min-width: 80px;
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
             QPushButton:hover, QPushButton:focus {
                 background-color: #32CD32; /*accent*/
                 border: 1px solid #32CD32; /*accent*/
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
             QLineEdit, QComboBox, QListWidget {
                 background-color: #535353; /*_secondary background*/
                 border: 1px solid #32CD32; /*accent*/
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
             /* 1. The main box when it's closed */
             QComboBox {
@@ -178,26 +193,44 @@ def apply_dark_theme(app: QApplication) -> None:
                 border: 1px solid #535353; /*_secondary background*/
                 border-radius: 4px;
                 padding: 5px;
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
-            /* 2. The box when you Tab onto it with the keyboard */
+            /* 2. This styles the actual list (the popup) */
+            QComboBox QAbstractItemView {
+                background-color: #535353; /*_secondary background*/
+                border: 1px solid #32CD32; /*accent*/
+                font-family: 'Roboto';
+                font-size: 20pt;
+            }
+            
+            /* 3. The box when you Tab onto it with the keyboard */
             QComboBox:focus {
                 border: 2px solid #32CD32; /*accent*/
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
-            /* Target the items specifically for Hover and Selection */
+            /* 4. Target the items specifically for Hover and Selection */
             QComboBox QAbstractItemView::item {
                 background-color: transparent;
                 color: #bfe6eb; /*_textTitle*/ /* Color of the text in the list */
                 padding: 5px;
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
-            /* When the mouse is OVER an item */
+            /* 5. When the mouse is OVER an item */
             QComboBox QAbstractItemView::item:hover {
                 background-color: #32CD32; /*accent*/ /* Darker grey to show presence */
                 color: #bfe6eb; /*_textTitle*/
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
-            /* When an item is SELECTED (clicked or keyboard-navigated) */
+            /* 6. When an item is SELECTED (clicked or keyboard-navigated) */
             QComboBox QAbstractItemView::item:selected {
                 background-color: #32CD32; /*accent*/ /* High-contrast green */
                 color: #bfe6eb; /*_textTitle*/ /* Color of the text in the list */
+                font-family: 'Roboto';
+                font-size: 20pt;
             }
         """)
         # app.setStyleSheet("""

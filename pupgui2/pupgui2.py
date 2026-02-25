@@ -7,8 +7,8 @@ import threading
 
 from PySide6.QtCore import Qt, QCoreApplication, QObject, QThread, QWaitCondition, QMutex, QDataStream
 from PySide6.QtCore import QByteArray, QEvent, Signal, Slot, QTranslator, QLocale, QLibraryInfo
-from PySide6.QtGui import QIcon, QKeyEvent, QKeySequence, QShortcut
-from PySide6.QtWidgets import QApplication, QDialog, QMessageBox, QLabel, QPushButton, QCheckBox
+from PySide6.QtGui import QIcon, QKeyEvent, QKeySequence, QShortcut, QFont, QColor, QPalette
+from PySide6.QtWidgets import QApplication, QDialog, QMessageBox, QLabel, QPushButton, QCheckBox, QListView
 from PySide6.QtWidgets import QProgressBar, QVBoxLayout, QSpacerItem, QSizePolicy
 from PySide6.QtUiTools import QUiLoader
 from PySide6.QtDBus import QDBusConnection
@@ -165,10 +165,9 @@ class MainWindow(QObject):
         if install_loc.get('launcher') in ('pixlwine', 'pixlproton'):
             self.ui.btnShowCtInfo.setVisible(False)
             self.ui.btnAbout.setVisible(False)
-            #self.ui.lblInstallDirectory.setVisible(False)            
-            #self.ui.lblActiveDownloads.setVisible(False)
-            #self.ui.comboInstallLocation.setVisible(False)
             self.ui.btnManageInstallLocations.setVisible(False)
+            # Force the dropdown to use a standard QListView (essential for CSS font support)
+            self.ui.comboInstallLocation.setView(QListView())
 
         # Keyboard Shortcuts
         QShortcut(QKeySequence.Quit, self.ui).activated.connect(self.btn_close_clicked)
