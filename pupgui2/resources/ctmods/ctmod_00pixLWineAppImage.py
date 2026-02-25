@@ -102,7 +102,7 @@ class CtInstaller(QObject):
             'version', 'date', 'download', 'size', 'checksum'
         """
 
-        return fetch_project_release_data(self.CT_URL, self.release_format, self.rs, tag=tag)
+        return fetch_project_release_data(self.CT_URL, self.release_format, self.rs, tag=tag, checksum_type='digest')
 
     def __get_data(self, version: str) -> dict | None:
 
