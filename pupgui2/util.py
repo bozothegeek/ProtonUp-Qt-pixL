@@ -842,7 +842,9 @@ def fetch_project_release_data(release_url: str, release_format: str, rs: reques
                 continue
             
             values['checksum'] = checksum_url
-
+        else:
+            values['checksum'] = asset.get('digest', None)
+            
     return values
 
 
