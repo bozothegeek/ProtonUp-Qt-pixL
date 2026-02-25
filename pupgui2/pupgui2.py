@@ -147,7 +147,7 @@ class MainWindow(QObject):
         self.ui.comboInstallLocation.currentIndexChanged.connect(self.combo_install_location_current_index_changed)
         self.ui.btnManageInstallLocations.clicked.connect(self.btn_manage_install_locations_clicked)
         self.ui.btnAddVersion.clicked.connect(self.btn_add_version_clicked)
-        self.ui.btnRemoveSelected.clicked.connect(self.btn_remove_selcted_clicked)
+        self.ui.btnRemoveSelected.clicked.connect(self.btn_remove_selected_clicked)
         self.ui.btnShowGameList.clicked.connect(self.btn_show_game_list_clicked)
         self.ui.btnAbout.clicked.connect(self.btn_about_clicked)
         self.ui.btnClose.clicked.connect(self.btn_close_clicked)
@@ -175,8 +175,8 @@ class MainWindow(QObject):
         QShortcut(QKeySequence(QKeySequence.HelpContents), self.ui).activated.connect(self.btn_about_clicked)
         QShortcut(QKeySequence('Ctrl+Shift+N'), self.ui).activated.connect(self.btn_manage_install_locations_clicked)
         QShortcut(QKeySequence.New, self.ui).activated.connect(self.btn_add_version_clicked)
-        QShortcut(QKeySequence.Delete, self.ui).activated.connect(self.btn_remove_selcted_clicked)
-        QShortcut(QKeySequence('Ctrl+Backspace'), self.ui).activated.connect(self.btn_remove_selcted_clicked)
+        QShortcut(QKeySequence.Delete, self.ui).activated.connect(self.btn_remove_selected_clicked)
+        QShortcut(QKeySequence('Ctrl+Backspace'), self.ui).activated.connect(self.btn_remove_selected_clicked)
         QShortcut(QKeySequence('Alt+Return'), self.ui).activated.connect(self.btn_show_ct_info_clicked)  # Uses 'Return' even though docs mention 'Enter' - https://doc.qt.io/qt-6/qkeysequence.html
         QShortcut(QKeySequence('Ctrl+G'), self.ui).activated.connect(self.btn_show_game_list_clicked)
         ## Steam Compat Tool Shortcuts (Some overlap w/ Heroic)
@@ -385,7 +385,7 @@ class MainWindow(QObject):
             dialog.is_fetching_releases.connect(self.set_fetching_releases)
             dialog.set_selected_compat_tool(compat_tool)
 
-    def btn_remove_selcted_clicked(self):
+    def btn_remove_selected_clicked(self):
         ctools_to_remove = []
         games_using_tools = 0
         for item in self.ui.listInstalledVersions.selectedItems():

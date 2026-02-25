@@ -203,7 +203,6 @@ def apply_dark_theme(app: QApplication) -> None:
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
-            
             /* 3. The box when you Tab onto it with the keyboard */
             QComboBox:focus {
                 border: 2px solid #32CD32; /*accent*/
@@ -510,6 +509,7 @@ def remove_ctool(ver: str, install_dir: str) -> bool:
     """
     target = os.path.join(install_dir, ver.split(' - ')[0])
     # Special case hack to remove SteamTinkerLaunch
+    print(f'ver: {ver} / install_dir: {install_dir} - to remove')
     if 'steamtinkerlaunch' in target.lower():
         mb = QMessageBox()
         cb = QCheckBox(QCoreApplication.instance().translate('util.py', 'Delete SteamTinkerLaunch configuration'))
@@ -519,7 +519,12 @@ def remove_ctool(ver: str, install_dir: str) -> bool:
         mb.exec()
         return remove_steamtinkerlaunch(compat_folder=target, remove_config=cb.isChecked())
     elif os.path.exists(target):
-        shutil.rmtree(target)
+        if os.path.isdir(target):
+            # It's a folder (standard compatibility tool)
+            shutil.rmtree(target)
+        else:
+            # It's a file (like an .AppImage)
+            os.remove(target)        
         return True
     return False
 
