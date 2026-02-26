@@ -15,8 +15,8 @@ from pupgui2.datastructures import Launcher
 
 
 CT_NAME = 'DXVK'
-CT_LAUNCHERS = ['lutris', 'heroicwine', 'heroicproton']
-CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_z0dxvk', '''Vulkan based implementation of Direct3D 8, 9, 10, and 11 for Linux/Wine.<br/><br/>https://github.com/lutris/docs/blob/master/HowToDXVK.md''')}
+CT_LAUNCHERS = ['lutris', 'heroicwine', 'heroicproton', 'pixlwine']
+CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_z0dxvk', '''Vulkan based implementation of Direct3D 8, 9, 10, and 11 for Linux/Wine.<br/><br/>https://github.com/doitsujin/dxvk''')}
 
 
 class CtInstaller(QObject):
@@ -85,7 +85,8 @@ class CtInstaller(QObject):
             'version', 'date', 'download', 'size'
         """
 
-        asset_condition = lambda asset: 'native' not in [asset.get('name', ''), asset.get('url', '')]  # 'name' for github asset, 'url' for gitlab asset
+        asset_condition = lambda asset: 'native' not in asset.get('name', '') and 'native' not in asset.get('url', '') # 'name' for github asset, 'url' for gitlab asset
+
         return fetch_project_release_data(self.CT_URL, self.release_format, self.rs, tag=tag, asset_condition=asset_condition)
 
     def is_system_compatible(self):
@@ -138,9 +139,12 @@ class CtInstaller(QObject):
         Return Type: bool
         """
 
+        print(f'install_dir : {install_dir}')
+        print(f'version : {version}')
         data, dxvk_dir = self.__get_data(version, install_dir)
         if not data:
             return False
+        print(f'dxvk_dir : {dxvk_dir}')
 
         # Should be updated to support Heroic, like ctmod_d8vk
         dxvk_archive: str = os.path.join(temp_dir, data['download'].split('/')[-1])

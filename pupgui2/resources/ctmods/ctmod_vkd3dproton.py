@@ -16,8 +16,8 @@ from pupgui2.util import build_headers_with_authorization, fetch_project_release
 
 
 CT_NAME = 'vkd3d-proton'
-CT_LAUNCHERS = ['lutris', 'heroicwine', 'heroicproton']
-CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_vkd3d-proton', '''Fork of Wine's VKD3D which aims to implement the full Direct3D 12 API on top of Vulkan (Valve Release).<br/><br/>https://github.com/lutris/docs/blob/master/HowToDXVK.md''')}
+CT_LAUNCHERS = ['lutris', 'heroicwine', 'heroicproton', 'pixlwine']
+CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_vkd3d-proton', '''Fork of Wine's VKD3D which aims to implement the full Direct3D 12 API on top of Vulkan (Valve Release).<br/><br/>https://github.com/HansKristian-Work/vkd3d-proton''')}
 
 class CtInstaller(QObject):
 

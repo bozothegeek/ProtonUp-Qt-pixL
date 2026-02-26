@@ -9,8 +9,8 @@ from pupgui2.util import build_headers_with_authorization
 
 
 CT_NAME = 'DXVK Async'
-CT_LAUNCHERS = ['lutris']
-CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_z1dxvkasync', '''Vulkan based implementation of Direct3D 8, 9, 10, and 11 for Linux/Wine with gplasync patch by Ph42oN.<br/><br/><b>Warning: Use only with singleplayer games!</b>''')}
+CT_LAUNCHERS = ['lutris', 'pixlwine']
+CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_z1dxvkasync', '''Vulkan based implementation of Direct3D 8, 9, 10, and 11 for Linux/Wine with gplasync patch by Ph42oN.<br/><br/>https://github.com/lutris/docs/blob/master/HowToDXVK.md<br/>https://gitlab.com/Ph42oN/dxvk-gplasync<br/><b>Warning: Use only with singleplayer games!</b>''')}
 
 
 class CtInstaller(DXVKInstaller):
