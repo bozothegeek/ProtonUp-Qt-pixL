@@ -16,9 +16,9 @@ from pupgui2.util import build_headers_with_authorization
 from pupgui2.networkutil import download_file
 
 
-CT_NAME = 'pixL-Wine-AppImage'
+CT_NAME = 'pixL OS Wine AppImages'
 CT_LAUNCHERS = ['pixlwine']
-CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_00pixLWineAppImage', '''This is the "Legacy" AppImage that we used with pixL.<br/><br/><b>This is meant to be used for testing principally.</b>''')}
+CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_x0pixLWineAppImage', '''This is the "Legacy" AppImage that we used with pixL.<br/><br/><b>This is meant to be used for testing principally.</b>''')}
 
 
 class CtInstaller(QObject):
