@@ -16,9 +16,9 @@ from pupgui2.util import build_headers_with_authorization
 from pupgui2.networkutil import download_file
 
 
-CT_NAME = 'Wine-GE-Proton'
+CT_NAME = 'GloriousEggroll Wine-GE-Custom'
 CT_LAUNCHERS = ['pixlwine']
-CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_00winege', '''This is a build of WINE based on/forked from the most recent bleeding-edge proton experimental wine repo.<br/><br/><b> This is meant to be used with non-steam games outside of Steam.</b>''')}
+CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_00winege', '''This is a build of WINE based on/forked from the most recent bleeding-edge proton experimental wine repo.<br/><br/>https://github.com/GloriousEggroll/wine-ge-custom<br/><b> This is meant to be used with non-steam games outside of Steam.</b>''')}
 
 
 class CtInstaller(QObject):
