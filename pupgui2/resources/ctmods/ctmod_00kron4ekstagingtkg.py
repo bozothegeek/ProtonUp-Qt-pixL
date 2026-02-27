@@ -1,5 +1,5 @@
 # pupgui2 compatibility tools module
-# Kron4ek Wine-Builds Vanilla
+# Kron4ek Wine-Builds Staging
 # Copyright (C) 2021 DavidoTek, partially based on AUNaseef's protonup
 
 import subprocess
@@ -12,9 +12,9 @@ from pupgui2.util import fetch_project_release_data, ghapi_rlcheck
 from pupgui2.resources.ctmods.ctmod_00protonge import CtInstaller as GEProtonInstaller
 
 
-CT_NAME = 'Kron4ek Wine-Builds Vanilla'
-CT_LAUNCHERS = ['lutris', 'winezgui', 'pixlwine']
-CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_kron4ekvanilla', '''Compatibility tool "Wine" to run Windows games on Linux. Official version from the WineHQ sources, compiled by Kron4ek.''')}
+CT_NAME = 'Kron4ek Wine-Builds Staging TKG'
+CT_LAUNCHERS = ['pixlwine']
+CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_00kron4ekstagingtkg', '''Compatibility tool "Wine" to run Windows games on Linux. Official version from the WineHQ sources, compiled by Kron4ek.''')}
 
 
 class CtInstaller(GEProtonInstaller):
@@ -40,14 +40,18 @@ class CtInstaller(GEProtonInstaller):
 
         is_wow64 = tag.endswith(' (wow64)')
         is_amd64 = tag.endswith(' (amd64)')
+        is_x86 = tag.endswith(' (x86)')
         if is_wow64:
             tag = tag.replace(" (wow64)", "")
-            asset_condition = lambda asset: 'amd64-wow64' in asset.get('name', '') and 'staging' not in asset.get('name', '')
+            asset_condition = lambda asset: 'amd64-wow64' in asset.get('name', '') and 'staging' in asset.get('name', '') and 'tkg' in asset.get('name', '')
         elif is_amd64:
             tag = tag.replace(" (amd64)", "")
-            asset_condition = lambda asset: 'amd64' in asset.get('name', '') and not any(ignore in asset.get('name', '') for ignore in ['staging', 'wow64'])
+            asset_condition = lambda asset: 'amd64' in asset.get('name', '') and 'staging' in asset.get('name', '') and 'wow64' not in asset.get('name', '') and 'tkg' in asset.get('name', '')
+        elif is_x86:
+            tag = tag.replace(" (x86)", "")
+            asset_condition = lambda asset: 'x86' in asset.get('name', '') and 'staging' in asset.get('name', '') and 'tkg' in asset.get('name', '')
         else:
-            print(f"ctmod_kron4ekvanilla: Invalid tag '{tag}'. Must contain amd64 or wow64")
+            print(f"ctmod_kron4ekvanilla: Invalid tag '{tag}'. Must contain amd64 or wow64 with staging")
             return None
 
         return fetch_project_release_data(self.CT_URL, self.release_format, self.rs, tag=tag, asset_condition=asset_condition)
@@ -102,9 +106,10 @@ class CtInstaller(GEProtonInstaller):
             # Check if there is wow64 build to add
             for asset in release.get('assets', []):
                 asset_name = asset.get('name', '')
-                if 'amd64-wow64' in asset_name and self.release_format in asset_name and 'staging' not in asset_name:
+                if 'amd64-wow64' in asset_name and self.release_format in asset_name and 'staging' in asset_name and 'tkg' in asset_name:
                     versions_to_display.append(f"{tag_name} (wow64)")
-                elif 'amd64' in asset_name and self.release_format in asset_name and 'staging' not in asset_name:
+                elif 'amd64' in asset_name and self.release_format in asset_name and 'staging' in asset_name and 'wow64' not in asset_name and 'tkg' in asset_name:
                     versions_to_display.append(f"{tag_name} (amd64)")
-
+                elif 'x86' in asset_name and self.release_format in asset_name and 'staging' in asset_name and 'tkg' in asset_name:
+                    versions_to_display.append(f"{tag_name} (x86)")
         return versions_to_display
