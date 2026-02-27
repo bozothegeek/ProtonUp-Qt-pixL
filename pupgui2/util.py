@@ -146,6 +146,19 @@ def apply_dark_theme(app: QApplication) -> None:
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
+            QLabel {
+                color: #32CD32; /*accent*/
+                font-family: 'Roboto';
+                font-size: 20pt;
+                font-weight: bold; /* This adds the bold effect */
+            }
+            QTextEdit {
+                color: #b7e3e8; /*_textLabel*/
+                font-family: 'Roboto';
+                font-size: 20pt;
+                font-style: italic; /* This adds the italic effect */
+                background-color: #535353; /*_secondary background*/
+            }
             QListWidget:focus {
                 border: 1px solid #32CD32; /*accent*/
                 font-family: 'Roboto';
