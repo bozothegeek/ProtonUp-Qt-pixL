@@ -111,12 +111,19 @@ def apply_dark_theme(app: QApplication) -> None:
     elif theme == 'pixl':
         #app.setStyle('Fusion')
         #pegasus "original" color for testing (extracted from QML)
-        #    background = "#404040"
-        #    _secondary = "#535353"
-        #    _textTitle = "#bfe6eb"
-        #    _textLabel = "#b7e3e8"
-        #    _textSublabel = "#B0E0E6"
-        #    accent = "#32CD32"
+        #background = "#404040"
+        background = read_update_config_value('background', section='pupgui2')
+        #_secondary = "#535353"
+        _secondary = read_update_config_value('_secondary', section='pupgui2')
+        #_textTitle = "#bfe6eb"
+        _textTitle = read_update_config_value('_textTitle', section='pupgui2')
+        #_textLabel = "#b7e3e8"
+        _textLabel = read_update_config_value('_textLabel', section='pupgui2')
+        #_textSublabel = "#B0E0E6"
+        _textSublabel = read_update_config_value('_textSublabel', section='pupgui2')
+        #accent = "#32CD32"
+        accent = read_update_config_value('accent', section='pupgui2')
+        
         # Create a font object
         #font = QFont("Segoe UI", 20) # Name of font, size in points
         #font = QFont("DejaVu Sans", 20) # Name of font, size in points
@@ -134,53 +141,53 @@ def apply_dark_theme(app: QApplication) -> None:
 
         app.setStyleSheet("""
             QWidget {
-                background-color: #404040; /*background*/
-                color: #32CD32; /*accent*/
+                background-color: """ + background + """;
+                color: """ + accent + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             QListWidget {
-                background-color: #535353; /*_secondary background*/
-                color: #bfe6eb; /*_textTitle*/           
-                border: 1px solid #535353; /*_secondary background*/
+                background-color: """ + _secondary + """;
+                color: """ + _textTitle + """;           
+                border: 1px solid """ + _secondary + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             QLabel {
-                color: #32CD32; /*accent*/
+                color: """ + accent + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
                 font-weight: bold; /* This adds the bold effect */
             }
             QTextEdit {
-                color: #b7e3e8; /*_textLabel*/
+                color: """ + _textLabel + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
                 font-style: italic; /* This adds the italic effect */
-                background-color: #535353; /*_secondary background*/
+                background-color: """ + _secondary + """;
             }
             QListWidget:focus {
-                border: 1px solid #32CD32; /*accent*/
+                color: """ + accent + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             /* This targets the selection box */
             QListWidget::item:selected, QListWidget::item:focus {
-                background-color: #32CD32; /*accent*/
-                color: #bfe6eb; /*_textTitle*/           
+                background-color: """ + accent + """;
+                color: """ + _textTitle + """;           
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             QListWidget::item:hover {
-                background-color: #535353; /*_secondary background*/
-                color: #32CD32; /*accent*/
+                background-color: """ + _secondary + """;
+                color: """ + accent + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             QPushButton {
-                background-color: #535353; /*_secondary background*/
-                color: #b7e3e8; /*_textLabel*/
-                border: 1px solid #32CD32; /*accent*/
+                background-color: """ + _secondary + """;
+                color: """ + _textLabel + """;
+                border: 1px solid """ + accent + """;
                 border-radius: 5px;
                 padding: 5px;
                 min-width: 80px;
@@ -188,22 +195,22 @@ def apply_dark_theme(app: QApplication) -> None:
                 font-size: 20pt;
             }
             QPushButton:hover, QPushButton:focus {
-                background-color: #32CD32; /*accent*/
-                border: 1px solid #32CD32; /*accent*/
+                background-color: """ + accent + """;
+                border: 1px solid """ + accent + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             QLineEdit, QComboBox, QListWidget {
-                background-color: #535353; /*_secondary background*/
-                border: 1px solid #32CD32; /*accent*/
+                background-color: """ + _secondary + """;
+                border: 1px solid """ + accent + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             /* 1. The main box when it's closed */
             QComboBox {
-                background-color: #535353; /*_secondary background*/
-                color: #bfe6eb; /*_textTitle*/
-                border: 1px solid #535353; /*_secondary background*/
+                background-color: """ + _secondary + """;
+                color: """ + _textTitle + """;
+                border: 1px solid """ + _secondary + """;
                 border-radius: 4px;
                 padding: 5px;
                 font-family: 'Roboto';
@@ -211,36 +218,36 @@ def apply_dark_theme(app: QApplication) -> None:
             }
             /* 2. This styles the actual list (the popup) */
             QComboBox QAbstractItemView {
-                background-color: #535353; /*_secondary background*/
-                border: 1px solid #32CD32; /*accent*/
+                background-color: """ + _secondary + """;
+                border: 1px solid """ + accent + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             /* 3. The box when you Tab onto it with the keyboard */
             QComboBox:focus {
-                border: 2px solid #32CD32; /*accent*/
+                border: 2px solid """ + accent + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             /* 4. Target the items specifically for Hover and Selection */
             QComboBox QAbstractItemView::item {
                 background-color: transparent;
-                color: #bfe6eb; /*_textTitle*/ /* Color of the text in the list */
+                color: """ + _textTitle + """; /* Color of the text in the list */
                 padding: 5px;
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             /* 5. When the mouse is OVER an item */
             QComboBox QAbstractItemView::item:hover {
-                background-color: #32CD32; /*accent*/ /* Darker grey to show presence */
-                color: #bfe6eb; /*_textTitle*/
+                background-color: """ + accent + """;
+                color: """ + _textTitle + """;
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
             /* 6. When an item is SELECTED (clicked or keyboard-navigated) */
             QComboBox QAbstractItemView::item:selected {
-                background-color: #32CD32; /*accent*/ /* High-contrast green */
-                color: #bfe6eb; /*_textTitle*/ /* Color of the text in the list */
+                background-color: """ + accent + """;
+                color: """ + _textTitle + """; /* Color of the text in the list */
                 font-family: 'Roboto';
                 font-size: 20pt;
             }
