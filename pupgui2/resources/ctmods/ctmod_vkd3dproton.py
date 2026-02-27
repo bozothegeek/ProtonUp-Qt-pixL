@@ -15,7 +15,7 @@ from pupgui2.util import extract_tar, extract_tar_zst, get_launcher_from_install
 from pupgui2.util import build_headers_with_authorization, fetch_project_release_data, fetch_project_releases
 
 
-CT_NAME = 'vkd3d-proton'
+CT_NAME = 'vkd3d proton'
 CT_LAUNCHERS = ['lutris', 'heroicwine', 'heroicproton', 'pixlwine']
 CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_vkd3d-proton', '''Fork of Wine's VKD3D which aims to implement the full Direct3D 12 API on top of Vulkan (Valve Release).<br/><br/>https://github.com/HansKristian-Work/vkd3d-proton''')}
 

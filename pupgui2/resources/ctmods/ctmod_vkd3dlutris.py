@@ -7,7 +7,7 @@ from PySide6.QtCore import QCoreApplication
 from pupgui2.resources.ctmods.ctmod_vkd3dproton import CtInstaller as VKD3DInstaller
 
 
-CT_NAME = 'vkd3d-lutris'
+CT_NAME = 'vkd3d lutris'
 CT_LAUNCHERS = ['lutris', 'heroicwine', 'heroicproton', 'pixlwine']
 CT_DESCRIPTION = {'en': QCoreApplication.instance().translate('ctmod_vkd3d-lutris', '''Fork of Wine's VKD3D which aims to implement the full Direct3D 12 API on top of Vulkan (Lutris Release).<br/><br/>https://github.com/lutris/vkd3d''')}
 
