@@ -874,7 +874,7 @@ def get_download_url_from_asset(release_url: str, asset: dict, release_format: s
     return ''
 
 
-def fetch_project_release_data(release_url: str, release_format: str, rs: requests.Session, tag: str = '', checksum_suffix: str = '', asset_condition: Callable | None = None, checksum_type: str = '') -> dict:
+def fetch_project_release_data(release_url: str, release_format: str, rs: requests.Session, tag: str = '', checksum_suffix: str = '', asset_condition: Callable | None = None, checksum_condition: Callable | None = None, checksum_type: str = '') -> dict:
 
     """
     Fetch information about a given release based on its tag, with an optional condition lambda.
