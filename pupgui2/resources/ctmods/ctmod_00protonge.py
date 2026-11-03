@@ -188,6 +188,19 @@ class CtInstaller(QObject):
         if os.path.exists(checksum_dir):
             open(checksum_dir, 'w').write(download_checksum)
 
+        # symlink creation of "proton" wine for pixL
+        proton_path = os.path.join(protondir, "files")
+        #only if any "files " directory exists in proton installation
+        if os.path.exists(proton_path):
+            wine_symlink = os.path.join("usr", "wine", 'Wine-' + data['version'])
+            os.makedirs(os.path.dirname(wine_symlink), exist_ok=True)
+            if os.path.lexists(wine_symlink):
+                os.unlink(wine_symlink)
+            try:
+                os.symlink(proton_path, wine_symlink)
+            except Exception as e:
+                print(f"Failed to create pixL wine symlink - Reason: {e}")
+
         self.__set_download_progress_percent(100)
 
         return True
